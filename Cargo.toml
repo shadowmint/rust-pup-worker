@@ -1,0 +1,17 @@
+[package]
+name = "pup-worker"
+version = "0.1.0"
+authors = [""]
+
+[dependencies]
+serde = "1.0"
+serde_yaml = "0.7"
+serde_derive = "1.0"
+time = "*"
+lazy_static = "1.0"
+dunce = "0.1"
+getopts = "0.2"
+
+[dependencies.base-logging]
+git = "https://github.com/shadowmint/rust-base-logging"
+branch = "master"
