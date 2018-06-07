@@ -5,6 +5,8 @@ use std::fs;
 use logger::get_logger;
 use base_logging::Level;
 use std::error::Error;
+use errors::PupWorkerError;
+use std::fs::File;
 
 /// Treat platforms uniformly regardless of mix and matching formats
 pub fn join<U: AsRef<Path>, V: AsRef<Path>>(a: U, b: V) -> PathBuf {
@@ -38,4 +40,10 @@ pub fn display<P: AsRef<Path>>(path: P) -> String {
             rtn
         }
     };
+}
+
+// Write a 0-byte output file to the target path
+pub fn blat<P: AsRef<Path>>(path: P) -> Result<(), PupWorkerError> {
+    PupWorkerError::wrap(File::create(path.as_ref()))?;
+    Ok(())
 }
